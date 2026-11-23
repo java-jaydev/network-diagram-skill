@@ -1,0 +1,26 @@
+{
+  "name": "network-diagram-skill",
+  "version": "0.1.0",
+  "description": "Describe a network in plain words, get an icon-based network diagram. Works with Claude, ChatGPT, Gemini, Grok.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "netdiagram": "renderer/cli.mjs"
+  },
+  "scripts": {
+    "build:icons": "node scripts/build-icons.mjs",
+    "test": "node --test test/",
+    "build:site": "node scripts/build-site.mjs",
+    "build": "npm run build:icons && npm run build:site"
+  },
+  "devDependencies": {
+    "elkjs": "0.9.3",
+    "js-yaml": "4.1.0"
+  },
+  "files": [
+    "renderer",
+    "skills",
+    "examples",
+    "icons"
+  ]
+}
