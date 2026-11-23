@@ -1,0 +1,14 @@
+{
+  "name": "network-diagram-skill",
+  "owner": {
+    "name": "java-jaydev"
+  },
+  "plugins": [
+    {
+      "name": "network-diagram",
+      "source": "./",
+      "description": "Describe a network in plain words and get an icon-based network diagram."
+    }
+  ],
+  "description": "Network diagrams from plain-language descriptions: icon-based SVG/PNG with automatic layout and a review checklist."
+}
