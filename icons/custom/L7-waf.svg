@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>웹 애플리케이션 방화벽</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#6C3483" stroke-width="2.5"/>
+  <g fill="none" stroke="#6C3483" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <path d="M32 11c6 4 13 6 19 6.5V25c0 9.5-6.5 16.5-19 21-12.5-4.5-19-11.5-19-21v-7.5C19 17 26 15 32 11z" fill="#6C3483" fill-opacity="0.15"/>
+    <rect x="20" y="21" width="24" height="15" rx="3" fill="#FFFFFF"/>
+    <path d="M20 27h24"/>
+  </g>
+  <rect x="37" y="46" width="17" height="11" rx="3" fill="#6C3483"/>
+  <text x="45.5" y="54.5" font-family="Arial, sans-serif" font-weight="bold" font-size="9" text-anchor="middle" fill="#FFFFFF">L7</text>
+</svg>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Network Diagram Renderer</title>
+<meta name="description" content="AI가 만든 YAML 명세를 붙여 넣으면 아이콘이 들어간 네트워크 구성도(SVG/PNG)를 만들어 줍니다.">
+<style>
+  :root { --bg:#f4f6f8; --card:#fff; --fg:#1f2a36; --mut:#5d6d7e; --line:#d5dbe1; --accent:#1b3a5c; --err:#c0392b; --warn:#b9770e; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#14181d; --card:#1d232a; --fg:#e8edf2; --mut:#9aa7b4; --line:#2c343d; --accent:#4a8bd6; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif; }
+  header { padding:18px 20px 10px; }
+  header h1 { margin:0 0 4px; font-size:22px; }
+  header p { margin:0; color:var(--mut); font-size:14px; line-height:1.6; }
+  header a { color:var(--accent); }
+  .wrap { display:grid; grid-template-columns:minmax(320px, 440px) 1fr; gap:16px; padding:10px 20px 24px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; min-width:0; }
+  textarea { width:100%; height:58vh; min-height:320px; resize:vertical; border:1px solid var(--line); border-radius:8px; padding:10px; font:13px/1.5 ui-monospace,Menlo,Consolas,monospace; background:var(--bg); color:var(--fg); }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin:10px 0 0; }
+  button, select { font:inherit; font-size:14px; border-radius:8px; border:1px solid var(--line); padding:8px 12px; background:var(--card); color:var(--fg); cursor:pointer; }
+  button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+  button:disabled { opacity:.5; cursor:default; }
+  #msg { font-size:13px; line-height:1.6; margin-top:10px; white-space:pre-wrap; }
+  #msg .err { color:var(--err); } #msg .warn { color:var(--warn); } #msg .ok { color:#1e8449; }
+  #out { overflow:auto; background:#fff; border-radius:8px; min-height:300px; display:flex; align-items:flex-start; justify-content:center; }
+  #out svg { max-width:100%; height:auto; }
+  #out .empty { color:#5d6d7e; padding:60px 20px; text-align:center; font-size:14px; }
+  details { margin-top:14px; font-size:13px; }
+  summary { cursor:pointer; font-weight:bold; }
+  table { border-collapse:collapse; width:100%; margin-top:8px; }
+  td, th { border-bottom:1px solid var(--line); padding:5px 6px; text-align:left; vertical-align:middle; }
+  td img { width:28px; height:28px; display:block; }
+  code { background:var(--bg); padding:1px 5px; border-radius:4px; }
+  @media (max-width: 900px) { .wrap { grid-template-columns:1fr; padding:10px 16px 24px; } textarea { height:40vh; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Network Diagram Renderer</h1>
+  <p>AI(Claude, ChatGPT, Gemini, Grok)에게 네트워크를 말로 설명하면 YAML 명세를 만들어 줍니다. 그 YAML을 왼쪽에 붙여 넣고 <b>그리기</b>를 누르세요. 입력한 내용은 이 브라우저 안에서만 처리되고 어디로도 전송되지 않습니다.
+  · <a href="https://github.com/java-jaydev/network-diagram-skill">사용법과 AI 지침</a></p>
+</header>
+<div class="wrap">
+  <div class="card">
+    <textarea id="src" spellcheck="false" aria-label="YAML 명세"></textarea>
+    <div class="row">
+      <button class="primary" id="go">그리기</button>
+      <select id="iconset" aria-label="아이콘 스타일">
+        <option value="">아이콘: 명세 설정 따름</option>
+        <option value="custom">아이콘: 기본 (계층 배지)</option>
+        <option value="affinity">아이콘: Affinity</option>
+      </select>
+      <button id="example">예시 불러오기</button>
+    </div>
+    <div id="msg"></div>
+    <details>
+      <summary>사용할 수 있는 장비 type</summary>
+      <table id="types"><tr><th></th><th>type</th><th>계층</th><th>설명</th></tr></table>
+    </details>
+  </div>
+  <div class="card">
+    <div class="row" style="margin:0 0 10px">
+      <button id="dlsvg" disabled>SVG 저장</button>
+      <button id="dlpng" disabled>PNG 저장</button>
+    </div>
+    <div id="out"><div class="empty">왼쪽에 YAML을 붙여 넣고 <b>그리기</b>를 누르세요.</div></div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/elkjs@0.9.3/lib/elk.bundled.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<script type="module">
+import { render } from "./lib/core.mjs";
+import { TYPES, ICONSETS } from "./lib/icons.mjs";
+
+const $ = (id) => document.getElementById(id);
+const src = $("src"), msg = $("msg"), out = $("out");
+let lastSvg = "", lastSize = null;
+
+const STORE = "netdiagram-src";
+try { src.value = localStorage.getItem(STORE) || ""; } catch {}
+src.addEventListener("input", () => { try { localStorage.setItem(STORE, src.value); } catch {} });
+
+for (const [t, v] of Object.entries(TYPES)) {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `<td><img alt="" src="${ICONSETS.custom[t]}"></td><td><code>${t}</code></td><td>${v.layer}</td><td>${v.desc}</td>`;
+  $("types").appendChild(tr);
+}
+
+$("example").onclick = async () => {
+  src.value = await (await fetch("./examples/hq-and-warehouse.yaml")).text();
+  src.dispatchEvent(new Event("input"));
+  draw();
+};
+
+async function draw() {
+  msg.innerHTML = "";
+  let spec;
+  try { spec = jsyaml.load(src.value); } catch (e) {
+    msg.innerHTML = `<span class="err">YAML 형식 오류 (${e.mark ? `${e.mark.line + 1}번째 줄` : ""}): ${e.reason || e.message}</span>\n이 메시지를 AI에게 그대로 보여 주고 고쳐 달라고 하세요.`;
+    return;
+  }
+  if (!spec || typeof spec !== "object") { msg.innerHTML = `<span class="err">명세가 비어 있습니다.</span>`; return; }
+  const iconset = $("iconset").value || spec.icons || "custom";
+  try {
+    const r = await render(spec, { ELK, icons: ICONSETS[iconset] || ICONSETS.custom, types: TYPES });
+    lastSvg = r.svg; lastSize = [r.width, r.height];
+    out.innerHTML = r.svg;
+    msg.innerHTML = `<span class="ok">완료</span>` + r.warnings.map((w) => `\n<span class="warn">경고: ${w}</span>`).join("");
+    $("dlsvg").disabled = $("dlpng").disabled = false;
+  } catch (e) {
+    msg.innerHTML = `<span class="err">명세 오류:\n- ${(e.errors || [e.message]).join("\n- ")}</span>\n이 메시지를 AI에게 그대로 보여 주고 고쳐 달라고 하세요.`;
+  }
+}
+$("go").onclick = draw;
+
+const fileName = () => {
+  try { return (jsyaml.load(src.value)?.title || "network-diagram").replace(/[\\/:*?"<>|]/g, "_"); } catch { return "network-diagram"; }
+};
+const save = (blob, name) => { const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
+$("dlsvg").onclick = () => save(new Blob([lastSvg], { type: "image/svg+xml" }), fileName() + ".svg");
+$("dlpng").onclick = () => {
+  const img = new Image();
+  img.onload = () => {
+    const c = document.createElement("canvas"), k = 2;
+    c.width = lastSize[0] * k; c.height = lastSize[1] * k;
+    const g = c.getContext("2d"); g.scale(k, k); g.drawImage(img, 0, 0);
+    c.toBlob((b) => save(b, fileName() + ".png"), "image/png");
+  };
+  img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(lastSvg)));
+};
+if (location.hash === "#example") $("example").onclick();
+else if (src.value.trim()) draw();
+</script>
+</body>
+</html>

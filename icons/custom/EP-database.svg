@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>데이터베이스</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#2C3E50" stroke-width="2.5"/>
+  <g fill="none" stroke="#2C3E50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <path d="M15 20v24c0 4 7.6 7 17 7s17-3 17-7V20" fill="#2C3E50" fill-opacity="0.15"/>
+    <ellipse cx="32" cy="20" rx="17" ry="7" fill="#FFFFFF"/>
+    <path d="M15 28c0 4 7.6 7 17 7s17-3 17-7m-34 8c0 4 7.6 7 17 7s17-3 17-7"/>
+  </g>
+</svg>

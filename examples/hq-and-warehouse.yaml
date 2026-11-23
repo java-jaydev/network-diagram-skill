@@ -1,0 +1,101 @@
+title: 본사 + 물류센터 네트워크 구성도
+subtitle: 예시. IP 대역과 포트는 가정값
+icons: custom
+
+nodes:
+  - { id: internet, type: internet, label: Internet, sub: 공인망 }
+  - { id: partner, type: external, label: 외부 연계 시스템, sub: 협력사 API }
+
+zones:
+  - id: wh
+    label: 물류센터
+    kind: site
+    nodes:
+      - { id: fw1, type: utm, label: Firewall (UTM), sub: VPN 내장 }
+      - { id: core1, type: l3-switch, label: Switch(Main), sub: L3 코어 }
+    zones:
+      - id: wh-sensor
+        label: 센서망
+        kind: wireless
+        vlan: 20
+        cidr: 10.10.20.0/24
+        nodes:
+          - { id: ap, type: ap, label: AP }
+          - { id: s1, type: iot-sensor, label: IoT 센서, mark: new }
+          - { id: s2, type: wearable-sensor, label: 충돌감지센서, mark: new }
+      - id: wh-ctrl
+        label: 관제실
+        kind: control
+        vlan: 10
+        cidr: 10.10.10.0/24
+        nodes:
+          - { id: sw1, type: switch, label: Switch(L2) }
+          - { id: broker, type: mqtt-broker, label: IoT Broker, sub: MQTT }
+          - { id: nvr, type: nvr, label: NVR, sub: 녹화 }
+      - id: wh-cctv
+        label: CCTV망
+        kind: cctv
+        vlan: 30
+        cidr: 10.10.30.0/24
+        nodes:
+          - { id: poe, type: poe-switch, label: PoE Switch, mark: assume }
+          - { id: cam1, type: cctv, label: CCTV 1 }
+          - { id: cam2, type: cctv, label: CCTV 2 }
+
+  - id: hq
+    label: 본사
+    kind: site
+    nodes:
+      - { id: fw2, type: utm, label: Firewall (UTM), sub: "존: 내부 / DMZ" }
+      - { id: core2, type: l3-switch, label: Switch(Main), sub: L3 코어 }
+    zones:
+      - id: hq-in
+        label: 내부 서버망
+        kind: internal
+        cidr: 10.20.10.0/24
+        nodes:
+          - { id: sw2, type: switch, label: Switch(L2) }
+          - { id: was, type: was, label: WAS, sub: [영상 분석, WMS] }
+          - { id: db, type: db, label: DB, sub: PostgreSQL }
+      - id: hq-dmz
+        label: DMZ
+        kind: dmz
+        cidr: 10.20.100.0/24
+        nodes:
+          - { id: sw3, type: switch, label: Switch(L2) }
+          - { id: web, type: web, label: WEB, sub: 관제 페이지 }
+          - { id: proxy, type: proxy, label: Proxy, sub: 외부 연계 수신 }
+
+links:
+  - [partner, internet]
+  - [internet, fw1]
+  - [internet, fw2]
+  - { from: fw1, to: fw2, style: vpn, label: IPsec VPN }
+  - [fw1, core1]
+  - [core1, ap]
+  - [core1, sw1]
+  - [core1, poe]
+  - [ap, s1, wifi]
+  - [ap, s2, wifi]
+  - [sw1, broker]
+  - [sw1, nvr]
+  - [poe, cam1]
+  - [poe, cam2]
+  - { from: fw2, to: core2, label: inside }
+  - { from: fw2, to: sw3, label: DMZ }
+  - [core2, sw2]
+  - [sw2, was]
+  - [sw2, db]
+  - [sw3, web]
+  - [sw3, proxy]
+
+flows:
+  - { name: 센서 → Broker, from: 10.10.20.x, to: 10.10.10.x, port: MQTT 1883, note: 물류센터 내부 }
+  - { name: Broker·NVR → 본사 WAS, from: 10.10.10.0/24, to: 10.20.10.0/24, port: "8883, 554", note: VPN 터널 }
+  - { name: 사용자 → DMZ WEB, from: any, to: 10.20.100.x, port: HTTPS 443, note: 공인 IP NAT }
+  - { name: DMZ → 내부 WAS, from: 10.20.100.0/24, to: 10.20.10.x, port: TCP 8080, note: DMZ → 내부는 이것만 }
+  - { name: DMZ → DB 직접, from: 10.20.100.0/24, to: DB, deny: true, note: 차단 }
+
+notes:
+  - IP 대역·포트는 예시. 실제 값으로 바꿔야 함
+  - 양쪽 거점 사설 대역이 겹치면 VPN 라우팅 불가

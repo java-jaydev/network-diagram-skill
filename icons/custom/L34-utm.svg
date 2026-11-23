@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>VPN이 내장된 통합 위협 관리 장비</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#B03A2E" stroke-width="2.5"/>
+  <g fill="none" stroke="#B03A2E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <rect x="11" y="14" width="25" height="27" rx="3" fill="#B03A2E" fill-opacity="0.15"/>
+    <path d="M11 23h25m-25 9h25M23.5 14v9M19 23v9m9-9v9m-4.5 0v9"/>
+    <rect x="40" y="28" width="14" height="14" rx="3" fill="#B03A2E" fill-opacity="0.15"/>
+    <path d="M43 28v-5a4 4 0 0 1 8 0v5m-4 5v4"/>
+  </g>
+  <rect x="28" y="46" width="26" height="11" rx="3" fill="#B03A2E"/>
+  <text x="41" y="54.5" font-family="Arial, sans-serif" font-weight="bold" font-size="9" text-anchor="middle" fill="#FFFFFF">L3-4</text>
+</svg>

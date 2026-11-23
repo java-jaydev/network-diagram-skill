@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>본사 빌딩</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#2C3E50" stroke-width="2.5"/>
+  <g fill="none" stroke="#2C3E50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <path d="M19 50V13h23v37M10 50V29h9m23 0h12v21M10 50h44" fill="#2C3E50" fill-opacity="0.15"/>
+    <path d="M26 21h2m5 0h2m-9 7h2m5 0h2m-9 7h2m5 0h2m-8 15v-9h7v9M14 36h1m32 0h2"/>
+  </g>
+</svg>

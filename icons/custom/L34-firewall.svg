@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>벽돌벽 방화벽</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#B03A2E" stroke-width="2.5"/>
+  <g fill="none" stroke="#B03A2E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <rect x="11" y="14" width="42" height="28" rx="3" fill="#B03A2E" fill-opacity="0.15"/>
+    <path d="M11 23.5h42m-42 9h42M25 14v9.5m14-9.5v9.5M19 23.5v9m13-9v9m13-9v9M25 32.5V42m14-9.5V42"/>
+  </g>
+  <rect x="28" y="46" width="26" height="11" rx="3" fill="#B03A2E"/>
+  <text x="41" y="54.5" font-family="Arial, sans-serif" font-weight="bold" font-size="9" text-anchor="middle" fill="#FFFFFF">L3-4</text>
+</svg>
