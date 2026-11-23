@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>외부 시스템</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#2C3E50" stroke-width="2.5"/>
+  <g fill="none" stroke="#2C3E50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <path d="M12 49V18l24-5v36zm-3 0h30" fill="#2C3E50" fill-opacity="0.15"/>
+    <path d="M19 25h3m5 0h3m-11 7h3m5 0h3m-9 17v-9h6v9m13-18h14l-5-5m5 5-5 5"/>
+  </g>
+</svg>

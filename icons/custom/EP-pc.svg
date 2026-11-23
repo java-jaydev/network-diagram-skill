@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>개인용 컴퓨터</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#2C3E50" stroke-width="2.5"/>
+  <g fill="none" stroke="#2C3E50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <rect x="12" y="14" width="40" height="29" rx="4" fill="#2C3E50" fill-opacity="0.15"/>
+    <path d="M12 37h40M32 43v7m-10 0h20"/>
+  </g>
+</svg>

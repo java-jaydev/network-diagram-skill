@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>무선 AP 컨트롤러</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#117A65" stroke-width="2.5"/>
+  <g fill="none" stroke="#117A65" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <path d="M15 15a11 11 0 0 1 15 0m-12 4a6 6 0 0 1 9 0m7-4a11 11 0 0 1 15 0m-12 4a6 6 0 0 1 9 0M22.5 24v5m19-5v5"/>
+    <rect x="12" y="29" width="40" height="13" rx="3" fill="#117A65" fill-opacity="0.15"/>
+    <path d="M18 35.5h3m5 0h3m11 0h6"/>
+  </g>
+  <rect x="37" y="46" width="17" height="11" rx="3" fill="#117A65"/>
+  <text x="45.5" y="54.5" font-family="Arial, sans-serif" font-weight="bold" font-size="9" text-anchor="middle" fill="#FFFFFF">L2</text>
+</svg>

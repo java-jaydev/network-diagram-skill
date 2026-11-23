@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>모뎀</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#5D6D7E" stroke-width="2.5"/>
+  <g fill="none" stroke="#5D6D7E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <rect x="12" y="15" width="40" height="26" rx="5" fill="#5D6D7E" fill-opacity="0.15"/>
+    <path d="M12 34h40M18 26h4c2 0 2-6 5-6s3 9 6 9 3-6 6-6h7"/>
+    <path d="M19 37.5h2m5 0h2"/>
+  </g>
+  <rect x="37" y="46" width="17" height="11" rx="3" fill="#5D6D7E"/>
+  <text x="45.5" y="54.5" font-family="Arial, sans-serif" font-weight="bold" font-size="9" text-anchor="middle" fill="#FFFFFF">L1</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>SSL VPN</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#AF601A" stroke-width="2.5"/>
+  <g fill="none" stroke="#AF601A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <rect x="12" y="13" width="38" height="28" rx="4" fill="#AF601A" fill-opacity="0.15"/>
+    <path d="M12 21h38m-32-4h2m-2 15h10l-3-3m3 3-3 3"/>
+    <rect x="32" y="32" width="16" height="12" rx="3" fill="#FFFFFF"/>
+    <rect x="32" y="32" width="16" height="12" rx="3" fill="#AF601A" fill-opacity="0.15" stroke="none"/>
+    <path d="M36 32v-4a4 4 0 0 1 8 0v4m-4 4.5v3"/>
+  </g>
+  <rect x="28" y="46" width="26" height="11" rx="3" fill="#AF601A"/>
+  <text x="41" y="54.5" font-family="Arial, sans-serif" font-weight="bold" font-size="9" text-anchor="middle" fill="#FFFFFF">L5-6</text>
+</svg>

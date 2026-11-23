@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>화재 대피 안내 키오스크</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#2C3E50" stroke-width="2.5"/>
+  <g fill="none" stroke="#2C3E50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <rect x="19" y="11" width="26" height="39" rx="4" fill="#2C3E50" fill-opacity="0.15"/>
+    <path d="M19 41h26m-19 9v4m12-4v4m-15 0h18"/>
+    <path d="M31 18c1 6-6 8-6 13a7 7 0 0 0 14 0c0-4-2-6-4-8 0 3-2 4-2 4 1-4 0-7-2-9z" fill="#2C3E50" fill-opacity="0.15"/>
+  </g>
+</svg>

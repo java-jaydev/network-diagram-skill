@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>VPN 게이트웨이</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#1F618D" stroke-width="2.5"/>
+  <g fill="none" stroke="#1F618D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <path d="M16 42V21l7-8h18l7 8v21M16 42h6m20 0h6" fill="#1F618D" fill-opacity="0.15"/>
+    <path d="M12 35h9m22 0h9l-4-4m4 4-4 4"/>
+    <rect x="25" y="27" width="14" height="13" rx="3" fill="#1F618D" fill-opacity="0.15"/>
+    <path d="M28 27v-4a4 4 0 0 1 8 0v4m-4 5v3"/>
+  </g>
+  <rect x="37" y="46" width="17" height="11" rx="3" fill="#1F618D"/>
+  <text x="45.5" y="54.5" font-family="Arial, sans-serif" font-weight="bold" font-size="9" text-anchor="middle" fill="#FFFFFF">L3</text>
+</svg>

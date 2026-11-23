@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>침입 탐지 및 방지 시스템</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#B03A2E" stroke-width="2.5"/>
+  <g fill="none" stroke="#B03A2E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <path d="M28 12c5 3 11 5.5 16 6v7c0 10-6 16-16 20-10-4-16-10-16-20v-7c5-.5 11-3 16-6z" fill="#B03A2E" fill-opacity="0.15"/>
+    <circle cx="33" cy="26" r="7" fill="#FFFFFF"/>
+    <path d="m38 31 9 9"/>
+  </g>
+  <rect x="28" y="46" width="26" height="11" rx="3" fill="#B03A2E"/>
+  <text x="41" y="54.5" font-family="Arial, sans-serif" font-weight="bold" font-size="9" text-anchor="middle" fill="#FFFFFF">L3-7</text>
+</svg>

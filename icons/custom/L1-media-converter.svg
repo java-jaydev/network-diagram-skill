@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>광-구리 미디어 컨버터</title>
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#FFFFFF" stroke="#5D6D7E" stroke-width="2.5"/>
+  <g fill="none" stroke="#5D6D7E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <rect x="11" y="15" width="42" height="27" rx="4" fill="#5D6D7E" fill-opacity="0.15"/>
+    <circle cx="18.5" cy="28.5" r="3.5"/>
+    <path d="M26 24h11l-3-3m3 3-3 3m3 6H26l3-3m-3 3 3 3"/>
+    <path d="M42 23.5h6.5V33h-6.5zm2 4h2.5"/>
+  </g>
+  <rect x="37" y="46" width="17" height="11" rx="3" fill="#5D6D7E"/>
+  <text x="45.5" y="54.5" font-family="Arial, sans-serif" font-weight="bold" font-size="9" text-anchor="middle" fill="#FFFFFF">L1</text>
+</svg>
